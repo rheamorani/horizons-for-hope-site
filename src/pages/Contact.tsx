@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import bookDecoration from "@/assets/book-decoration.png";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -33,9 +34,19 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-12">
+    <div className="min-h-screen pt-24 pb-12 relative">
+      {/* Educational decoration */}
+      <img 
+        src={bookDecoration} 
+        alt="" 
+        className="absolute top-40 right-20 w-20 h-20 opacity-15 animate-fade-in hidden lg:block"
+      />
+      
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Send className="h-10 w-10 text-primary" />
+          </div>
           <h1 className="text-5xl font-bold mb-4 bg-gradient-sunset bg-clip-text text-transparent">
             Contact Us
           </h1>

@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, Users, Heart, Lightbulb } from "lucide-react";
+import { BookOpen, Users, Heart, Lightbulb, GraduationCap, BookOpenCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-image.jpg";
+import bookDecoration from "@/assets/book-decoration.png";
+import gradDecoration from "@/assets/graduation-decoration.png";
 
 const Home = () => {
   const features = [
@@ -29,7 +31,19 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      {/* Educational decorative elements */}
+      <img 
+        src={bookDecoration} 
+        alt="" 
+        className="absolute top-32 left-10 w-16 h-16 opacity-20 animate-fade-in hidden md:block"
+      />
+      <img 
+        src={gradDecoration} 
+        alt="" 
+        className="absolute top-96 right-10 w-20 h-20 opacity-20 animate-fade-in hidden md:block"
+      />
+      
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
         <div
@@ -39,6 +53,10 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-hero" />
         
         <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground animate-fade-in">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <GraduationCap className="h-12 w-12" />
+            <BookOpenCheck className="h-10 w-10" />
+          </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             Building Brighter Futures
           </h1>

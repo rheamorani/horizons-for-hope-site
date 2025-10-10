@@ -1,7 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, DollarSign, Calendar, BookOpen } from "lucide-react";
+import { Users, DollarSign, Calendar, BookOpen, HandHeart } from "lucide-react";
 import { Link } from "react-router-dom";
+import gradDecoration from "@/assets/graduation-decoration.png";
 
 const GetInvolved = () => {
   const opportunities = [
@@ -52,9 +53,19 @@ const GetInvolved = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-12">
+    <div className="min-h-screen pt-24 pb-12 relative">
+      {/* Educational decoration */}
+      <img 
+        src={gradDecoration} 
+        alt="" 
+        className="absolute top-32 left-10 w-24 h-24 opacity-15 animate-fade-in hidden lg:block"
+      />
+      
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <HandHeart className="h-10 w-10 text-primary" />
+          </div>
           <h1 className="text-5xl font-bold mb-4 bg-gradient-sunset bg-clip-text text-transparent">
             Get Involved
           </h1>
