@@ -3,8 +3,8 @@ import { Calculator, Brain, Code, Microscope, BookOpen, FileText, ChevronLeft, C
 import { useState } from "react";
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// Set up PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+// Set up PDF.js worker - using cdnjs for better CORS support
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 const Curriculum = () => {
   const [numPages, setNumPages] = useState<{[key: string]: number}>({});
