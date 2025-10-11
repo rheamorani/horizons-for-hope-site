@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import krishImage from "@/assets/krish.jpg";
 import sunnyImage from "@/assets/sunny.jpg";
 import tanayImage from "@/assets/tanay.png";
-import rohanImage from "@/assets/rohan.JPG";
+import rohanImage from "@/assets/rohan.jpg";
 import lillieImage from "@/assets/lillie.jpg";
 
 const Contact = () => {
@@ -124,7 +124,7 @@ const Contact = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <CardTitle className="text-2xl">Krish</CardTitle>
+              <CardTitle className="text-2xl">Krish Jha</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
@@ -180,7 +180,7 @@ const Contact = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <CardTitle className="text-2xl">Tanay</CardTitle>
+              <CardTitle className="text-2xl">Tanay Anantasagar</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
