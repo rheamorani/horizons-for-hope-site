@@ -2,18 +2,20 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { useMobileDetection } from "@/hooks/use-mobile-detection";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [enrollmentDropdown, setEnrollmentDropdown] = useState(false);
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const isMobile = useMobileDetection();
 
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Curriculum", path: "/curriculum" },
     { name: "Get Involved", path: "/get-involved" },
-    { name: "Enrollment", path: "/enrollment/th-rogers", hasDropdown: true },
+    { name: "Enrollment", path: isMobile ? "/enrollment" : "/enrollment/th-rogers", hasDropdown: !isMobile },
     { name: "Contact Us", path: "/contact" },
   ];
 

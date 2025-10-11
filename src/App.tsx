@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Curriculum from "./pages/Curriculum";
 import GetInvolved from "./pages/GetInvolved";
 import Contact from "./pages/Contact";
+import Enrollment from "./pages/Enrollment";
 import THRogersEnrollment from "./pages/THRogersEnrollment";
 import HoggEnrollment from "./pages/HoggEnrollment";
 import WhartonEnrollment from "./pages/WhartonEnrollment";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/curriculum" element={<Curriculum />} />
           <Route path="/get-involved" element={<GetInvolved />} />
+          <Route path="/enrollment" element={<Enrollment />} />
           <Route path="/enrollment/th-rogers" element={<THRogersEnrollment />} />
           <Route path="/enrollment/hogg" element={<HoggEnrollment />} />
           <Route path="/enrollment/wharton" element={<WhartonEnrollment />} />

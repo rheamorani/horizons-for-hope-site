@@ -174,8 +174,8 @@ const Home = () => {
       </section>
 
       {/* Overlapping Image 1 - Between Mission and Impact */}
-      <div className="relative -my-10 z-10">
-        <div className="flex justify-end pr-8">
+      <div className="relative -my-5 md:-my-10 z-10">
+        <div className="flex justify-center md:justify-end md:pr-8">
           <img 
             src={image1} 
             alt="Students learning in classroom" 
@@ -218,8 +218,8 @@ const Home = () => {
       </section>
 
       {/* Overlapping Image 2 - Between Impact and Call to Action */}
-      <div className="relative -my-10 z-10">
-        <div className="flex justify-start pl-8">
+      <div className="relative -my-5 md:-my-10 z-10">
+        <div className="flex justify-center md:justify-start md:pl-8">
           <img 
             src={image2} 
             alt="Students engaged in STEM activities" 
