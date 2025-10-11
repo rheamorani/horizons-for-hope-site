@@ -115,12 +115,26 @@ const Curriculum = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="w-full h-[600px] border rounded-md overflow-hidden">
-                  <iframe
-                    src={computerScienceLesson}
+                <div className="w-full h-[600px] border rounded-md overflow-hidden bg-muted/30">
+                  <object
+                    data={computerScienceLesson}
+                    type="application/pdf"
                     className="w-full h-full"
-                    title="Computer Science Lesson 1"
-                  />
+                  >
+                    <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+                      <FileText className="h-16 w-16 text-muted-foreground mb-4" />
+                      <p className="text-muted-foreground mb-4">
+                        Your browser doesn't support embedded PDFs
+                      </p>
+                      <a
+                        href={computerScienceLesson}
+                        download
+                        className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+                      >
+                        Download PDF
+                      </a>
+                    </div>
+                  </object>
                 </div>
                 <a
                   href={computerScienceLesson}
@@ -145,12 +159,26 @@ const Curriculum = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="w-full h-[600px] border rounded-md overflow-hidden">
-                  <iframe
-                    src={chemLesson}
+                <div className="w-full h-[600px] border rounded-md overflow-hidden bg-muted/30">
+                  <object
+                    data={chemLesson}
+                    type="application/pdf"
                     className="w-full h-full"
-                    title="Chemistry Lesson 4"
-                  />
+                  >
+                    <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+                      <FileText className="h-16 w-16 text-muted-foreground mb-4" />
+                      <p className="text-muted-foreground mb-4">
+                        Your browser doesn't support embedded PDFs
+                      </p>
+                      <a
+                        href={chemLesson}
+                        download
+                        className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+                      >
+                        Download PDF
+                      </a>
+                    </div>
+                  </object>
                 </div>
                 <a
                   href={chemLesson}
