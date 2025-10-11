@@ -1,7 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calculator, Brain, Code, Microscope, BookOpen, FileText, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 // Set up PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
@@ -16,47 +18,13 @@ const Curriculum = () => {
     cs: 1.0,
     chem: 1.0
   });
-  const [loading, setLoading] = useState<{[key: string]: boolean}>({
-    cs: true,
-    chem: true
-  });
-  const [error, setError] = useState<{[key: string]: string}>({});
 
-  // PDF file paths - using public folder for better compatibility
+  // PDF file paths
   const computerScienceLesson = "/pdfs/Computer Science Lesson 1.pdf";
   const chemLesson = "/pdfs/Chem Lesson 4.pdf";
 
-  // Add timeout to loading state
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(prev => {
-        const newState = { ...prev };
-        Object.keys(newState).forEach(key => {
-          if (newState[key]) {
-            newState[key] = false;
-            setError(prevError => ({
-              ...prevError,
-              [key]: 'PDF loading timeout - please try refreshing the page'
-            }));
-          }
-        });
-        return newState;
-      });
-    }, 10000); // 10 second timeout
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const onDocumentLoadSuccess = (pdfKey: string) => (pdf: any) => {
-    setNumPages(prev => ({ ...prev, [pdfKey]: pdf.numPages }));
-    setLoading(prev => ({ ...prev, [pdfKey]: false }));
-    setError(prev => ({ ...prev, [pdfKey]: '' }));
-  };
-
-  const onDocumentLoadError = (pdfKey: string) => (error: any) => {
-    setLoading(prev => ({ ...prev, [pdfKey]: false }));
-    setError(prev => ({ ...prev, [pdfKey]: `Failed to load PDF: ${error.message || 'Unknown error'}` }));
-    console.error('PDF load error:', error);
+  const onDocumentLoadSuccess = (pdfKey: string) => ({ numPages }: { numPages: number }) => {
+    setNumPages(prev => ({ ...prev, [pdfKey]: numPages }));
   };
 
   const changePage = (pdfKey: string, offset: number) => {
@@ -222,38 +190,18 @@ const Curriculum = () => {
                   </div>
                   
                   {/* PDF Viewer */}
-                  <div className="border rounded-md overflow-hidden bg-white min-h-[400px] flex items-center justify-center">
-                    {loading.cs ? (
-                      <div className="text-center">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
-                        <p className="text-muted-foreground">Loading PDF...</p>
-                      </div>
-                    ) : error.cs ? (
-                      <div className="text-center text-red-500">
-                        <p>{error.cs}</p>
-                        <a 
-                          href={computerScienceLesson} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline mt-2 inline-block"
-                        >
-                          Open PDF in new tab
-                        </a>
-                      </div>
-                    ) : (
-                      <Document
-                        file={computerScienceLesson}
-                        onLoadSuccess={onDocumentLoadSuccess('cs')}
-                        onLoadError={onDocumentLoadError('cs')}
-                        className="flex justify-center"
-                      >
-                        <Page
-                          pageNumber={pageNumber.cs}
-                          scale={scale.cs}
-                          className="shadow-sm"
-                        />
-                      </Document>
-                    )}
+                  <div className="border rounded-md overflow-auto bg-white max-h-[600px] flex justify-center">
+                    <Document
+                      file={computerScienceLesson}
+                      onLoadSuccess={onDocumentLoadSuccess('cs')}
+                    >
+                      <Page
+                        pageNumber={pageNumber.cs}
+                        scale={scale.cs}
+                        renderTextLayer={true}
+                        renderAnnotationLayer={true}
+                      />
+                    </Document>
                   </div>
                 </div>
               </CardContent>
@@ -311,38 +259,18 @@ const Curriculum = () => {
                   </div>
                   
                   {/* PDF Viewer */}
-                  <div className="border rounded-md overflow-hidden bg-white min-h-[400px] flex items-center justify-center">
-                    {loading.chem ? (
-                      <div className="text-center">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
-                        <p className="text-muted-foreground">Loading PDF...</p>
-                      </div>
-                    ) : error.chem ? (
-                      <div className="text-center text-red-500">
-                        <p>{error.chem}</p>
-                        <a 
-                          href={chemLesson} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline mt-2 inline-block"
-                        >
-                          Open PDF in new tab
-                        </a>
-                      </div>
-                    ) : (
-                      <Document
-                        file={chemLesson}
-                        onLoadSuccess={onDocumentLoadSuccess('chem')}
-                        onLoadError={onDocumentLoadError('chem')}
-                        className="flex justify-center"
-                      >
-                        <Page
-                          pageNumber={pageNumber.chem}
-                          scale={scale.chem}
-                          className="shadow-sm"
-                        />
-                      </Document>
-                    )}
+                  <div className="border rounded-md overflow-auto bg-white max-h-[600px] flex justify-center">
+                    <Document
+                      file={chemLesson}
+                      onLoadSuccess={onDocumentLoadSuccess('chem')}
+                    >
+                      <Page
+                        pageNumber={pageNumber.chem}
+                        scale={scale.chem}
+                        renderTextLayer={true}
+                        renderAnnotationLayer={true}
+                      />
+                    </Document>
                   </div>
                 </div>
               </CardContent>
