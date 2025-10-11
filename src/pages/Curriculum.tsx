@@ -1,43 +1,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calculator, Brain, Code, Microscope, BookOpen, FileText, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
-import { useState } from "react";
-import { Document, Page, pdfjs } from 'react-pdf';
-
-// Set up PDF.js worker - using cdnjs for better CORS support
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+import { Calculator, Brain, Code, Microscope, BookOpen, FileText } from "lucide-react";
 
 const Curriculum = () => {
-  const [numPages, setNumPages] = useState<{[key: string]: number}>({});
-  const [pageNumber, setPageNumber] = useState<{[key: string]: number}>({
-    cs: 1,
-    chem: 1
-  });
-  const [scale, setScale] = useState<{[key: string]: number}>({
-    cs: 1.0,
-    chem: 1.0
-  });
-
   // PDF file paths
   const computerScienceLesson = "/pdfs/Computer Science Lesson 1.pdf";
   const chemLesson = "/pdfs/Chem Lesson 4.pdf";
-
-  const onDocumentLoadSuccess = (pdfKey: string) => ({ numPages }: { numPages: number }) => {
-    setNumPages(prev => ({ ...prev, [pdfKey]: numPages }));
-  };
-
-  const changePage = (pdfKey: string, offset: number) => {
-    setPageNumber(prev => ({
-      ...prev,
-      [pdfKey]: Math.max(1, Math.min(prev[pdfKey] + offset, numPages[pdfKey] || 1))
-    }));
-  };
-
-  const changeScale = (pdfKey: string, offset: number) => {
-    setScale(prev => ({
-      ...prev,
-      [pdfKey]: Math.max(0.5, Math.min(prev[pdfKey] + offset, 2.0))
-    }));
-  };
 
   const subjects = [
     {
@@ -148,60 +115,21 @@ const Curriculum = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {/* PDF Controls */}
-                  <div className="flex items-center justify-between bg-muted p-2 rounded-md">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => changePage('cs', -1)}
-                        disabled={pageNumber.cs <= 1}
-                        className="p-1 hover:bg-background rounded disabled:opacity-50"
-                      >
-                        <ChevronLeft className="h-4 w-4" />
-                      </button>
-                      <span className="text-sm">
-                        {pageNumber.cs} of {numPages.cs || '--'}
-                      </span>
-                      <button
-                        onClick={() => changePage('cs', 1)}
-                        disabled={pageNumber.cs >= (numPages.cs || 1)}
-                        className="p-1 hover:bg-background rounded disabled:opacity-50"
-                      >
-                        <ChevronRight className="h-4 w-4" />
-                      </button>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => changeScale('cs', -0.1)}
-                        className="p-1 hover:bg-background rounded"
-                      >
-                        <ZoomOut className="h-4 w-4" />
-                      </button>
-                      <span className="text-sm">{Math.round(scale.cs * 100)}%</span>
-                      <button
-                        onClick={() => changeScale('cs', 0.1)}
-                        className="p-1 hover:bg-background rounded"
-                      >
-                        <ZoomIn className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-                  
-                  {/* PDF Viewer */}
-                  <div className="border rounded-md overflow-auto bg-white max-h-[600px] flex justify-center">
-                    <Document
-                      file={computerScienceLesson}
-                      onLoadSuccess={onDocumentLoadSuccess('cs')}
-                    >
-                      <Page
-                        pageNumber={pageNumber.cs}
-                        scale={scale.cs}
-                        renderTextLayer={true}
-                        renderAnnotationLayer={true}
-                      />
-                    </Document>
-                  </div>
+                <div className="w-full h-[600px] border rounded-md overflow-hidden">
+                  <iframe
+                    src={computerScienceLesson}
+                    className="w-full h-full"
+                    title="Computer Science Lesson 1"
+                  />
                 </div>
+                <a
+                  href={computerScienceLesson}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block text-primary hover:underline"
+                >
+                  Open in new tab →
+                </a>
               </CardContent>
             </Card>
 
@@ -217,60 +145,21 @@ const Curriculum = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {/* PDF Controls */}
-                  <div className="flex items-center justify-between bg-muted p-2 rounded-md">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => changePage('chem', -1)}
-                        disabled={pageNumber.chem <= 1}
-                        className="p-1 hover:bg-background rounded disabled:opacity-50"
-                      >
-                        <ChevronLeft className="h-4 w-4" />
-                      </button>
-                      <span className="text-sm">
-                        {pageNumber.chem} of {numPages.chem || '--'}
-                      </span>
-                      <button
-                        onClick={() => changePage('chem', 1)}
-                        disabled={pageNumber.chem >= (numPages.chem || 1)}
-                        className="p-1 hover:bg-background rounded disabled:opacity-50"
-                      >
-                        <ChevronRight className="h-4 w-4" />
-                      </button>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => changeScale('chem', -0.1)}
-                        className="p-1 hover:bg-background rounded"
-                      >
-                        <ZoomOut className="h-4 w-4" />
-                      </button>
-                      <span className="text-sm">{Math.round(scale.chem * 100)}%</span>
-                      <button
-                        onClick={() => changeScale('chem', 0.1)}
-                        className="p-1 hover:bg-background rounded"
-                      >
-                        <ZoomIn className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-                  
-                  {/* PDF Viewer */}
-                  <div className="border rounded-md overflow-auto bg-white max-h-[600px] flex justify-center">
-                    <Document
-                      file={chemLesson}
-                      onLoadSuccess={onDocumentLoadSuccess('chem')}
-                    >
-                      <Page
-                        pageNumber={pageNumber.chem}
-                        scale={scale.chem}
-                        renderTextLayer={true}
-                        renderAnnotationLayer={true}
-                      />
-                    </Document>
-                  </div>
+                <div className="w-full h-[600px] border rounded-md overflow-hidden">
+                  <iframe
+                    src={chemLesson}
+                    className="w-full h-full"
+                    title="Chemistry Lesson 4"
+                  />
                 </div>
+                <a
+                  href={chemLesson}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block text-primary hover:underline"
+                >
+                  Open in new tab →
+                </a>
               </CardContent>
             </Card>
           </div>
