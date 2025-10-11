@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import krishImage from "@/assets/krish.jpg";
 import sunnyImage from "@/assets/sunny.jpg";
 import tanayImage from "@/assets/tanay.png";
-import rohanImage from "@/assets/rohan.jpg";
+import rohanImage from "@/assets/rohan.JPG";
 import lillieImage from "@/assets/lillie.jpg";
 
 const Contact = () => {
