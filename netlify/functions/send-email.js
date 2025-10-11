@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
     // Send email to admin using Resend Node.js SDK
     const { data, error } = await resend.emails.send({
       from: 'HorizonsForHope <noreply@horizonsforhope.com>',
-      to: ['info@horizonsforhope.com'],
+      to: ['horizonsforhopecontact@gmail.com'],
       subject: subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

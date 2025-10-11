@@ -126,7 +126,7 @@ const Home = () => {
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Link to="/curriculum">
-              <Button size="lg" className="bg-background text-foreground hover:bg-background/90 shadow-glow">
+              <Button size="lg" className="bg-background text-foreground hover:bg-background/90 shadow-glow relative overflow-hidden shine-button">
                 Explore Curriculum
               </Button>
             </Link>

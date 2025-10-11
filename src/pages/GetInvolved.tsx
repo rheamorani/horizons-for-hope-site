@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Users, BookOpen, HandHeart, CalendarDays, Mail, ExternalLink, FileText } from "lucide-react";
+import { Users, BookOpen, HandHeart, CalendarDays, Mail, ExternalLink, FileText, AlertTriangle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -182,6 +182,16 @@ const GetInvolved = () => {
                       Submit Email
                     </Button>
                   </form>
+                  
+                  {/* Mobile Note */}
+                  <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                    <div className="flex items-start gap-2">
+                      <AlertTriangle className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                      <p className="text-xs text-yellow-800">
+                        <strong>Note:</strong> Users are reporting issues with this feature on mobile devices. If you experience problems, please consider using our website on a desktop computer for a more stable experience.
+                      </p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>

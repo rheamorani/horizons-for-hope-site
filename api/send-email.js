@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     // Send email to admin using Resend Node.js SDK
     const { data, error } = await resend.emails.send({
       from: 'HorizonsForHope <noreply@horizonsforhope.com>',
-      to: ['info@horizonsforhope.com'],
+      to: ['horizonsforhopecontact@gmail.com'],
       subject: subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -85,8 +85,8 @@ export default async function handler(req, res) {
             <div style="background-color: #fff1e0; border-left: 4px solid #f7931e; padding: 15px 20px; margin: 25px 0; border-radius: 6px;">
               <p style="margin: 0; color: #555;"><strong>Next Steps:</strong></p>
               <ul style="margin: 10px 0 0 20px;">
-                <li>We’ll follow up soon to learn more about your goals and match you with the right tutor.</li>
-                <li>In the meantime, visit our site to learn more about our mission and volunteer opportunities.</li>
+                <li>We’ll follow up soon to learn more about your goals and see if our program is a good fit.</li>
+                <li>In the meantime, visit our site to learn more about our mission and opportunities.</li>
               </ul>
             </div>
     
