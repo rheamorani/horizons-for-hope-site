@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, BookOpenCheck, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import heroImage from "@/assets/hero-image-new.jpg";
 import bookDecoration from "@/assets/book-decoration.png";
 import gradDecoration from "@/assets/graduation-decoration.png";
@@ -16,6 +16,8 @@ const Home = () => {
     tutors: 0,
     students: 0
   });
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const impactRef = useRef<HTMLDivElement>(null);
 
   const openFullscreen = (imageSrc: string) => {
     setFullscreenImage(imageSrc);
@@ -48,25 +50,50 @@ const Home = () => {
     requestAnimationFrame(updateCounter);
   };
 
+  // Intersection Observer to trigger animation when section comes into view
   useEffect(() => {
-    // Start all counters at different speeds but end at the same time
-    const duration = 2000; // 2 seconds total
-    
-    // Chapters: 0 to 3 (fastest)
-    animateCounter(3, duration, (value) => {
-      setCounters(prev => ({ ...prev, chapters: value }));
-    });
-    
-    // Tutors: 0 to 60 (medium speed)
-    animateCounter(60, duration, (value) => {
-      setCounters(prev => ({ ...prev, tutors: value }));
-    });
-    
-    // Students: 0 to 100 (slowest)
-    animateCounter(100, duration, (value) => {
-      setCounters(prev => ({ ...prev, students: value }));
-    });
-  }, []);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            
+            // Start all counters at different speeds but end at the same time
+            const duration = 2000; // 2 seconds total
+            
+            // Chapters: 0 to 3 (fastest)
+            animateCounter(3, duration, (value) => {
+              setCounters(prev => ({ ...prev, chapters: value }));
+            });
+            
+            // Tutors: 0 to 60 (medium speed)
+            animateCounter(60, duration, (value) => {
+              setCounters(prev => ({ ...prev, tutors: value }));
+            });
+            
+            // Students: 0 to 100 (slowest)
+            animateCounter(100, duration, (value) => {
+              setCounters(prev => ({ ...prev, students: value }));
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the section is visible
+        rootMargin: '0px 0px -100px 0px' // Trigger slightly before the section is fully visible
+      }
+    );
+
+    if (impactRef.current) {
+      observer.observe(impactRef.current);
+    }
+
+    return () => {
+      if (impactRef.current) {
+        observer.unobserve(impactRef.current);
+      }
+    };
+  }, [hasAnimated]);
 
   return (
     <div className="min-h-screen relative">
@@ -159,7 +186,7 @@ const Home = () => {
       </div>
 
       {/* Statistics Section */}
-      <section className="py-8 bg-background">
+      <section ref={impactRef} className="py-8 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 text-foreground">Our Impact</h2>
@@ -184,7 +211,7 @@ const Home = () => {
             <div className="text-center">
               <div className="text-5xl font-bold text-primary mb-2">~{counters.students}</div>
               <div className="text-xl font-semibold text-foreground mb-2">Students Reached</div>
-              <div className="text-muted-foreground">Lives transformed through education</div>
+              <div className="text-muted-foreground">Students impacted through education</div>
             </div>
           </div>
         </div>
@@ -210,9 +237,9 @@ const Home = () => {
             Join our community of learners, educators, and supporters working together 
             to create positive change through education.
           </p>
-          <Link to="/contact">
+          <Link to="/get-involved">
             <Button size="lg" className="bg-background text-foreground hover:bg-background/90 shadow-glow">
-              Contact Us Today
+              Get Involved Today
             </Button>
           </Link>
         </div>

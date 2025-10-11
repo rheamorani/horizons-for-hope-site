@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Users, BookOpen, HandHeart, CalendarDays, Mail } from "lucide-react";
+import { Users, BookOpen, HandHeart, CalendarDays, Mail, ExternalLink, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -91,17 +91,23 @@ const GetInvolved = () => {
         "Workshop facilitation",
         "Administrative support",
       ],
+      formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSd_7dORmLM3hy4oJPBrEUcXcdBnW5j7lNLQLGGAK9KZNAa9fA/viewform",
+      formTitle: "HorizonsForHope Tutor Interest Form",
+      formDescription: "This form is intended for students at CVHS who are interested in tutoring with us."
     },
     {
       icon: BookOpen,
       title: "Partner With Us",
-      description: "Collaborate as an organization or business",
+      description: "Establish a partnership with HorizonsForHope",
       details: [
-        "Corporate sponsorships",
-        "Educational partnerships",
-        "Internship programs",
-        "Resource sharing",
+        "Start a new chapter in your area",
+        "Connect with local schools and communities",
+        "Build educational partnerships in your region",
+        "Expand the mission to reach more students",
       ],
+      formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfT_yV-XIwcmtj4g8pc_BR9MchHZXHXjzBBryo9kg7Inatpgg/viewform",
+      formTitle: "HorizonsForHope Branch Application Form",
+      formDescription: "This form is intended for members hoping to create a new HorizonsForHope branch in your area."
     },
   ];
 
@@ -135,7 +141,7 @@ const GetInvolved = () => {
                   <CardTitle className="text-xl">Schedule a Meeting</CardTitle>
                 </div>
                 <p className="text-muted-foreground text-sm">
-                  Book a 30-minute consultation with our team to discuss partnerships and programs.
+                  Book a 30-minute meeting to discuss partnerships and programs.
                 </p>
               </CardHeader>
               <CardContent>
@@ -153,10 +159,10 @@ const GetInvolved = () => {
                 <CardHeader className="pb-4">
                   <div className="flex items-center gap-3 mb-2">
                     <Mail className="h-6 w-6 text-primary" />
-                    <CardTitle className="text-xl">Email Form Submission</CardTitle>
+                    <CardTitle className="text-xl">Want More Information?</CardTitle>
                   </div>
                   <p className="text-muted-foreground text-sm">
-                    Enter your email to stay updated on educational partnerships and programs.
+                    Enter your email to get a comprehensive overview of our programs and services right to your inbox.
                   </p>
                 </CardHeader>
                 <CardContent className="pt-0">
@@ -168,7 +174,7 @@ const GetInvolved = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="your.email@school.edu"
+                        placeholder="your.email@provider.com"
                         required
                       />
                     </div>
@@ -206,7 +212,7 @@ const GetInvolved = () => {
                   <CardDescription className="text-base">{opportunity.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 mb-6">
                     {opportunity.details.map((detail, detailIndex) => (
                       <li key={detailIndex} className="flex items-start gap-2">
                         <span className="text-primary mt-1">•</span>
@@ -214,6 +220,30 @@ const GetInvolved = () => {
                       </li>
                     ))}
                   </ul>
+                  
+                  {/* Google Form Preview */}
+                  <div className="border rounded-lg p-4 bg-muted/30">
+                    <div className="flex items-center gap-2 mb-3">
+                      <FileText className="h-5 w-5 text-primary" />
+                      <h4 className="font-semibold text-foreground">{opportunity.formTitle}</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {opportunity.formDescription}
+                    </p>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                      <span>📝</span>
+                      <span>Email, Name, Phone, Grade Level, Subjects</span>
+                    </div>
+                    <a
+                      href={opportunity.formUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md transition-colors relative overflow-hidden shine-button"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Open Google Form
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             ))}
