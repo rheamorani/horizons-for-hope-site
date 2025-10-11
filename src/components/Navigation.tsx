@@ -57,7 +57,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4 animate-fade-in">
+          <div className="md:hidden pb-4">
             {navItems.map((item) => (
               <Link
                 key={item.path}

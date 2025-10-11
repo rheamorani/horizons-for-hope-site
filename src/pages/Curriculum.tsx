@@ -1,8 +1,78 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calculator, Brain, Code, Microscope, BookOpen } from "lucide-react";
-import bookDecoration from "@/assets/book-decoration.png";
+import { Calculator, Brain, Code, Microscope, BookOpen, FileText, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Document, Page, pdfjs } from 'react-pdf';
+
+// Set up PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 const Curriculum = () => {
+  const [numPages, setNumPages] = useState<{[key: string]: number}>({});
+  const [pageNumber, setPageNumber] = useState<{[key: string]: number}>({
+    cs: 1,
+    chem: 1
+  });
+  const [scale, setScale] = useState<{[key: string]: number}>({
+    cs: 1.0,
+    chem: 1.0
+  });
+  const [loading, setLoading] = useState<{[key: string]: boolean}>({
+    cs: true,
+    chem: true
+  });
+  const [error, setError] = useState<{[key: string]: string}>({});
+
+  // PDF file paths - using public folder for better compatibility
+  const computerScienceLesson = "/pdfs/Computer Science Lesson 1.pdf";
+  const chemLesson = "/pdfs/Chem Lesson 4.pdf";
+
+  // Add timeout to loading state
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(prev => {
+        const newState = { ...prev };
+        Object.keys(newState).forEach(key => {
+          if (newState[key]) {
+            newState[key] = false;
+            setError(prevError => ({
+              ...prevError,
+              [key]: 'PDF loading timeout - please try refreshing the page'
+            }));
+          }
+        });
+        return newState;
+      });
+    }, 10000); // 10 second timeout
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const onDocumentLoadSuccess = (pdfKey: string) => (pdf: any) => {
+    setNumPages(prev => ({ ...prev, [pdfKey]: pdf.numPages }));
+    setLoading(prev => ({ ...prev, [pdfKey]: false }));
+    setError(prev => ({ ...prev, [pdfKey]: '' }));
+  };
+
+  const onDocumentLoadError = (pdfKey: string) => (error: any) => {
+    setLoading(prev => ({ ...prev, [pdfKey]: false }));
+    setError(prev => ({ ...prev, [pdfKey]: `Failed to load PDF: ${error.message || 'Unknown error'}` }));
+    console.error('PDF load error:', error);
+  };
+
+  const changePage = (pdfKey: string, offset: number) => {
+    setPageNumber(prev => ({
+      ...prev,
+      [pdfKey]: Math.max(1, Math.min(prev[pdfKey] + offset, numPages[pdfKey] || 1))
+    }));
+  };
+
+  const changeScale = (pdfKey: string, offset: number) => {
+    setScale(prev => ({
+      ...prev,
+      [pdfKey]: Math.max(0.5, Math.min(prev[pdfKey] + offset, 2.0))
+    }));
+  };
+
   const subjects = [
     {
       icon: Calculator,
@@ -51,20 +121,10 @@ const Curriculum = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-12 relative">
-      {/* Educational decoration */}
-      <img 
-        src={bookDecoration} 
-        alt="" 
-        className="absolute top-20 right-10 w-24 h-24 opacity-15 animate-fade-in hidden lg:block"
-      />
-      
+    <div className="min-h-screen pt-24 pb-12">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <BookOpen className="h-10 w-10 text-primary" />
-          </div>
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-sunset bg-clip-text text-transparent">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold mb-4 text-foreground">
             Our Curriculum
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -76,14 +136,12 @@ const Curriculum = () => {
           {subjects.map((subject, index) => (
             <Card 
               key={index} 
-              className="hover:shadow-glow transition-all duration-300 animate-fade-in"
+              className="hover:shadow-glow transition-all duration-300"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardHeader>
                 <div className="flex items-center gap-4 mb-2">
-                  <div className="p-3 rounded-lg bg-gradient-sunset">
-                    <subject.icon className="h-8 w-8 text-primary-foreground" />
-                  </div>
+                  <subject.icon className="h-8 w-8 text-primary" />
                   <CardTitle className="text-2xl">{subject.title}</CardTitle>
                 </div>
                 <CardDescription className="text-base">{subject.description}</CardDescription>
@@ -103,13 +161,192 @@ const Curriculum = () => {
           ))}
         </div>
 
-        <div className="mt-12 p-8 bg-gradient-warm rounded-lg text-center">
-          <h3 className="text-2xl font-bold mb-3 text-foreground">Image Placeholder</h3>
-          <p className="text-muted-foreground mb-4">
-            Curriculum overview infographic or student learning photos can be added here
-          </p>
-          <div className="h-64 bg-muted rounded-lg flex items-center justify-center">
-            <p className="text-muted-foreground">[ Curriculum Image Placeholder ]</p>
+        <div className="mt-12">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold mb-3 text-foreground">Example Lessons</h3>
+            <p className="text-muted-foreground">
+              Explore our curriculum through these interactive lesson materials
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Computer Science Lesson */}
+            <Card className="hover:shadow-glow transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <FileText className="h-6 w-6 text-primary" />
+                  <CardTitle className="text-xl">Computer Science Lesson 1</CardTitle>
+                </div>
+                <CardDescription>
+                  Introduction to programming fundamentals and computational thinking
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {/* PDF Controls */}
+                  <div className="flex items-center justify-between bg-muted p-2 rounded-md">
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => changePage('cs', -1)}
+                        disabled={pageNumber.cs <= 1}
+                        className="p-1 hover:bg-background rounded disabled:opacity-50"
+                      >
+                        <ChevronLeft className="h-4 w-4" />
+                      </button>
+                      <span className="text-sm">
+                        {pageNumber.cs} of {numPages.cs || '--'}
+                      </span>
+                      <button
+                        onClick={() => changePage('cs', 1)}
+                        disabled={pageNumber.cs >= (numPages.cs || 1)}
+                        className="p-1 hover:bg-background rounded disabled:opacity-50"
+                      >
+                        <ChevronRight className="h-4 w-4" />
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => changeScale('cs', -0.1)}
+                        className="p-1 hover:bg-background rounded"
+                      >
+                        <ZoomOut className="h-4 w-4" />
+                      </button>
+                      <span className="text-sm">{Math.round(scale.cs * 100)}%</span>
+                      <button
+                        onClick={() => changeScale('cs', 0.1)}
+                        className="p-1 hover:bg-background rounded"
+                      >
+                        <ZoomIn className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {/* PDF Viewer */}
+                  <div className="border rounded-md overflow-hidden bg-white min-h-[400px] flex items-center justify-center">
+                    {loading.cs ? (
+                      <div className="text-center">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                        <p className="text-muted-foreground">Loading PDF...</p>
+                      </div>
+                    ) : error.cs ? (
+                      <div className="text-center text-red-500">
+                        <p>{error.cs}</p>
+                        <a 
+                          href={computerScienceLesson} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline mt-2 inline-block"
+                        >
+                          Open PDF in new tab
+                        </a>
+                      </div>
+                    ) : (
+                      <Document
+                        file={computerScienceLesson}
+                        onLoadSuccess={onDocumentLoadSuccess('cs')}
+                        onLoadError={onDocumentLoadError('cs')}
+                        className="flex justify-center"
+                      >
+                        <Page
+                          pageNumber={pageNumber.cs}
+                          scale={scale.cs}
+                          className="shadow-sm"
+                        />
+                      </Document>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Chemistry Lesson */}
+            <Card className="hover:shadow-glow transition-all duration-300">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <FileText className="h-6 w-6 text-primary" />
+                  <CardTitle className="text-xl">Chemistry Lesson 4</CardTitle>
+                </div>
+                <CardDescription>
+                  Advanced chemistry concepts and laboratory techniques
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {/* PDF Controls */}
+                  <div className="flex items-center justify-between bg-muted p-2 rounded-md">
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => changePage('chem', -1)}
+                        disabled={pageNumber.chem <= 1}
+                        className="p-1 hover:bg-background rounded disabled:opacity-50"
+                      >
+                        <ChevronLeft className="h-4 w-4" />
+                      </button>
+                      <span className="text-sm">
+                        {pageNumber.chem} of {numPages.chem || '--'}
+                      </span>
+                      <button
+                        onClick={() => changePage('chem', 1)}
+                        disabled={pageNumber.chem >= (numPages.chem || 1)}
+                        className="p-1 hover:bg-background rounded disabled:opacity-50"
+                      >
+                        <ChevronRight className="h-4 w-4" />
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => changeScale('chem', -0.1)}
+                        className="p-1 hover:bg-background rounded"
+                      >
+                        <ZoomOut className="h-4 w-4" />
+                      </button>
+                      <span className="text-sm">{Math.round(scale.chem * 100)}%</span>
+                      <button
+                        onClick={() => changeScale('chem', 0.1)}
+                        className="p-1 hover:bg-background rounded"
+                      >
+                        <ZoomIn className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {/* PDF Viewer */}
+                  <div className="border rounded-md overflow-hidden bg-white min-h-[400px] flex items-center justify-center">
+                    {loading.chem ? (
+                      <div className="text-center">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                        <p className="text-muted-foreground">Loading PDF...</p>
+                      </div>
+                    ) : error.chem ? (
+                      <div className="text-center text-red-500">
+                        <p>{error.chem}</p>
+                        <a 
+                          href={chemLesson} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline mt-2 inline-block"
+                        >
+                          Open PDF in new tab
+                        </a>
+                      </div>
+                    ) : (
+                      <Document
+                        file={chemLesson}
+                        onLoadSuccess={onDocumentLoadSuccess('chem')}
+                        onLoadError={onDocumentLoadError('chem')}
+                        className="flex justify-center"
+                      >
+                        <Page
+                          pageNumber={pageNumber.chem}
+                          scale={scale.chem}
+                          className="shadow-sm"
+                        />
+                      </Document>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
