@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, Send, User, Copy, Check, Instagram } from "lucide-react";
+import { Mail, Phone, Send, User, Copy, Check, Instagram, AlertTriangle, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import krishImage from "@/assets/krish.jpg";
@@ -12,6 +12,7 @@ import natalieImage from "@/assets/natalie.jpg";
 const Contact = () => {
   const { toast } = useToast();
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [isWarningExpanded, setIsWarningExpanded] = useState(false);
 
   const copyToClipboard = async (email: string) => {
     try {
@@ -111,6 +112,45 @@ const Contact = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Warning Notice */}
+        <div className="flex items-center justify-center mb-8">
+          <div 
+            className={`bg-red-50 border border-red-200 rounded-lg px-4 max-w-2xl transition-all duration-700 ease-in-out hover:bg-red-100 hover:border-red-300 hover:shadow-lg hover:scale-105 cursor-pointer group overflow-hidden ${
+              isWarningExpanded ? 'py-4' : 'py-2'
+            }`}
+            onClick={() => setIsWarningExpanded(!isWarningExpanded)}
+          >
+            <div className="flex items-center justify-center gap-2">
+              {isWarningExpanded ? (
+                <ChevronUp className="h-4 w-4 text-red-600 transition-all duration-300 group-hover:text-red-700" style={{ animation: 'slowBounce 2s ease-in-out infinite' }} />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-red-600 transition-all duration-300 group-hover:text-red-700" style={{ animation: 'slowBounce 2s ease-in-out infinite' }} />
+              )}
+              <AlertTriangle className="h-4 w-4 text-red-600 flex-shrink-0 transition-all duration-300 group-hover:text-red-700 group-hover:animate-pulse" />
+              <p className="text-red-800 text-xs font-medium transition-all duration-300 group-hover:text-red-900">
+                Anyone NOT mentioned here is extrapolating their role in the organization
+              </p>
+              {isWarningExpanded ? (
+                <ChevronUp className="h-4 w-4 text-red-600 transition-all duration-300 group-hover:text-red-700" style={{ animation: 'slowBounce 2s ease-in-out infinite' }} />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-red-600 transition-all duration-300 group-hover:text-red-700" style={{ animation: 'slowBounce 2s ease-in-out infinite' }} />
+              )}
+            </div>
+            
+            <div className={`transition-all duration-700 ease-in-out ${
+              isWarningExpanded 
+                ? 'max-h-96 opacity-100 mt-3 pt-3 border-t border-red-200' 
+                : 'max-h-0 opacity-0 overflow-hidden'
+            }`}>
+              <p className="text-red-800 text-xs leading-relaxed">
+                <strong>Important Notice:</strong> The members listed on this website are the only verified leadership members of HorizonsForHope. 
+                Any other individuals claiming to lead this organization are extending their actual role beyond what it was in reality. 
+                Please verify any claims of leadership or representation through our official contact channels.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Team Contact Cards */}
