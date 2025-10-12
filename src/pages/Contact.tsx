@@ -7,6 +7,7 @@ import sunnyImage from "@/assets/sunny.jpg";
 import tanayImage from "@/assets/tanay.png";
 import rohanImage from "@/assets/rohan.jpg";
 import lillieImage from "@/assets/lillie.jpg";
+import natalieImage from "@/assets/natalie.jpg";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -216,7 +217,7 @@ const Contact = () => {
                 <span className="text-base">rohanjangama@gmail.com</span>
               </div>
               <div className="text-sm text-muted-foreground">
-                <p>Rohan Jangama, a senior at Carnegie Vanguard High School in Houston, Texas, is the Head of the Math Department for Horizons for Hope, where he designs engaging STEM curricula and leads tutoring initiatives across schools. He founded the organization to make learning more accessible and help students build confidence. Outside of H4H, Rohan enjoys exploring creative math problems and connecting logical thinking to everyday life.</p>
+                <p>Rohan Jangama, is the Head of the Math Department for Horizons for Hope, where he designs engaging STEM curricula and leads tutoring initiatives across schools. He helped found the organization to make learning more accessible and help students build confidence. Outside of H4H, Rohan enjoys exploring creative math problems and connecting logical thinking to everyday life.</p>
               </div>
               <div className="text-center mt-4">
                 <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
@@ -258,8 +259,13 @@ const Contact = () => {
           {/* Head of Outreach */}
           <Card>
             <CardHeader className="text-center">
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20 bg-muted flex items-center justify-center">
-                <User className="h-16 w-16 text-muted-foreground" />
+              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
+                <img 
+                  src={natalieImage} 
+                  alt="Natalie" 
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center 30%' }}
+                />
               </div>
               <CardTitle className="text-2xl">Natalie Ho</CardTitle>
             </CardHeader>
