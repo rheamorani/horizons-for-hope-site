@@ -216,7 +216,7 @@ const Contact = () => {
                 <span className="text-base">rohanjangama@gmail.com</span>
               </div>
               <div className="text-sm text-muted-foreground">
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Rohan Jangama, a senior at Carnegie Vanguard High School in Houston, Texas, is the Head of the Math Department for Horizons for Hope, where he designs engaging STEM curricula and leads tutoring initiatives across schools. He founded the organization to make learning more accessible and help students build confidence. Outside of H4H, Rohan enjoys exploring creative math problems and connecting logical thinking to everyday life.</p>
               </div>
               <div className="text-center mt-4">
                 <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
@@ -244,7 +244,7 @@ const Contact = () => {
             <CardContent className="text-center">
               <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
                 <Mail className="h-5 w-5" />
-                <span className="text-base">s1745919@online.houstonisd.org</span>
+                <span className="text-base">lvychie14@gmail.com</span>
               </div>
 
               <div className="text-center mt-4">
@@ -266,7 +266,7 @@ const Contact = () => {
             <CardContent className="text-center">
               <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
                 <Mail className="h-5 w-5" />
-                <span className="text-base">s1776964@online.houstonisd.org</span>
+                <span className="text-base">natalieyuelin@gmail.com</span>
               </div>
               <div className="text-center mt-4">
                 <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
