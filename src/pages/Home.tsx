@@ -4,7 +4,6 @@ import { GraduationCap, BookOpenCheck, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import heroImage from "@/assets/hero-image-new.jpg";
-import bookDecoration from "@/assets/book-decoration.png";
 import gradDecoration from "@/assets/graduation-decoration.png";
 import image1 from "@/assets/image1.jpeg";
 import image2 from "@/assets/image2.png";
@@ -98,11 +97,6 @@ const Home = () => {
   return (
     <div className="min-h-screen relative">
       {/* Educational decorative elements */}
-      <img 
-        src={bookDecoration} 
-        alt="" 
-        className="absolute top-32 left-10 w-16 h-16 opacity-20 hidden md:block"
-      />
       <img 
         src={gradDecoration} 
         alt="" 

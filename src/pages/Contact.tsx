@@ -287,7 +287,9 @@ const Contact = () => {
                 <Mail className="h-5 w-5" />
                 <span className="text-base">lvychie14@gmail.com</span>
               </div>
-
+              <div className="text-sm text-muted-foreground">
+                <p>Lillie Pham oversees all social media platforms, creating engaging posts that highlight student success and community impact. With strong communication and design skills, she brings creativity and organization to every project. Outside of school, Lillie enjoys volunteering, exploring digital media, and finding new ways to make learning fun and accessible for everyone.</p>
+              </div>
               <div className="text-center mt-4">
                 <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
                   Social Media Manager
@@ -313,6 +315,9 @@ const Contact = () => {
               <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
                 <Mail className="h-5 w-5" />
                 <span className="text-base">natalieyuelin@gmail.com</span>
+              </div>
+              <div className="text-sm text-muted-foreground">
+                <p>Natalie Ho is the head of outreach for HorizonsForHope and co-founder for CurioKits, organizations dedicated to expanding access to education through free tutoring and no-cost STEM kits, respectively. She has hands-on experience in teaching kids, from helping her own brother with fractions to teaching English to kids in Taiwan. Natalie is also the team lead of her school's robotics team, has earned multiple awards in journalism up to the state level, and is an avid runner!</p>
               </div>
               <div className="text-center mt-4">
                 <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
