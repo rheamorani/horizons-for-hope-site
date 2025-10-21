@@ -96,12 +96,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen relative">
-      {/* Educational decorative elements */}
-      <img 
-        src={gradDecoration} 
-        alt="" 
-        className="absolute top-96 right-10 w-20 h-20 opacity-20 hidden md:block"
-      />
       
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
