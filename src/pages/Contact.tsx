@@ -8,6 +8,7 @@ import tanayImage from "@/assets/tanay.png";
 import rohanImage from "@/assets/rohan.jpg";
 import lillieImage from "@/assets/lillie.jpg";
 import natalieImage from "@/assets/natalie.jpg";
+import adelynnImage from "@/assets/adelynn.png";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -269,7 +270,7 @@ const Contact = () => {
         </div>
 
         {/* Additional Team Members */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {/* Lillie */}
           <Card>
             <CardHeader className="text-center">
@@ -322,6 +323,35 @@ const Contact = () => {
               <div className="text-center mt-4">
                 <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
                   Head of Outreach
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Adelynn Rubio */}
+          <Card>
+            <CardHeader className="text-center">
+              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
+                <img 
+                  src={adelynnImage} 
+                  alt="Adelynn Rubio" 
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center top', transform: 'translateY(0%)' }}
+                />
+              </div>
+              <CardTitle className="text-2xl">Adelynn Rubio</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
+                <Mail className="h-5 w-5" />
+                <span className="text-base">dlynnadelynn@gmail.com</span>
+              </div>
+              <div className="text-sm text-muted-foreground">
+                <p>Adelynn is the Networking Manager, where she coordinates meetings, builds partnerships, and helps shape tutoring agendas with expanding schools. She works with clubs and honor societies to ensure every student has access to volunteering opportunities and academic support. Passionate about teaching and helping students build confidence, she also draws on her love for engineering and physics to keep growing HorizonsForHope’s impact.</p>
+              </div>
+              <div className="text-center mt-4">
+                <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                  Networking Manager
                 </span>
               </div>
             </CardContent>
