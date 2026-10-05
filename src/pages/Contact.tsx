@@ -2,13 +2,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Mail, Phone, Send, User, Copy, Check, Instagram, AlertTriangle, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import krishImage from "@/assets/krish.jpg";
-import sunnyImage from "@/assets/sunny.jpg";
-import tanayImage from "@/assets/tanay.png";
-import rohanImage from "@/assets/rohan.jpg";
-import lillieImage from "@/assets/lillie.jpg";
-import natalieImage from "@/assets/natalie.jpg";
-import adelynnImage from "@/assets/adelynn.png";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -155,203 +148,122 @@ const Contact = () => {
         </div>
 
         {/* Team Contact Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Krish */}
-          <Card>
-            <CardHeader className="text-center">
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
-                <img 
-                  src={krishImage} 
-                  alt="Krish" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardTitle className="text-2xl">Krish Jha</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
-                <Mail className="h-5 w-5" />
-                <span className="text-base">krish.neil.jha@gmail.com</span>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                <p>Krish Jha, a junior at Carnegie Vanguard High School, co-founded HorizonsForHope, to expand access to education across the globe. Krish has competition experience in Math and Science and has won awards in Math and Chemistry Olympiad. He also has experience tutoring STEM subjects throughout his education.</p>
-              </div>
-              <div className="text-center mt-4">
-                <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                  Co-Founder
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Sunny */}
-          <Card>
-            <CardHeader className="text-center">
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
-                <img 
-                  src={sunnyImage} 
-                  alt="Sunny" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardTitle className="text-2xl">Shivaang (Sunny) Rana</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
-                <Mail className="h-5 w-5" />
-                <span className="text-base">shivaangr@gmail.com</span>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                <p>Sunny Rana is the head of the computer science department for HorizonsForHope. With proficiency in Python, C#, and JavaScript, he specializes in machine learning and software development. Sunny has worked and completed multiple machine learning projects involving LLM's and regression models. He also has experience teaching elementary to middle school students through piano volunteering at his local music school.</p>
-              </div>
-              <div className="text-center mt-4">
-                <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                  Co-Founder
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Tanay */}
-          <Card>
-            <CardHeader className="text-center">
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
-                <img 
-                  src={tanayImage} 
-                  alt="Tanay" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardTitle className="text-2xl">Tanay Anantasagar</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
-                <Mail className="h-5 w-5" />
-                <span className="text-base">tanay.anantasagar@gmail.com</span>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                <p>Tanay Anantasagar, a junior at Carnegie Vanguard High School in Houston, Texas, co-founded HorizonsForHope to expand global access to free tutoring in STEM and ethics for students globally. Alongside his work in education, Tanay is a science researcher and an advocate for animal rights, volunteering with organizations like Animals for the Voiceless.</p>
-              </div>
-              <div className="text-center mt-4">
-                <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                  Co-Founder
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Rohan */}
-          <Card>
-            <CardHeader className="text-center">
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
-                <img 
-                  src={rohanImage} 
-                  alt="Rohan" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <CardTitle className="text-2xl">Rohan Jangama</CardTitle>
-            </CardHeader>
-            <CardContent className="text-center">
-              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
-                <Mail className="h-5 w-5" />
-                <span className="text-base">rohanjangama@gmail.com</span>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                <p>Rohan Jangama, is the Head of the Math Department for Horizons for Hope, where he designs engaging STEM curricula and leads tutoring initiatives across schools. He helped found the organization to make learning more accessible and help students build confidence. Outside of H4H, Rohan enjoys exploring creative math problems and connecting logical thinking to everyday life.</p>
-              </div>
-              <div className="text-center mt-4">
-                <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                  Co-Founder
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Additional Team Members */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {/* Lillie */}
+          {/* Isabella Herrera */}
           <Card>
             <CardHeader className="text-center">
               <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
-                <img 
-                  src={lillieImage} 
-                  alt="Lillie" 
-                  className="w-full h-full object-cover"
-                />
+                <User className="w-full h-full p-8 text-muted-foreground" />
               </div>
-              <CardTitle className="text-2xl">Lillie Pham</CardTitle>
+              <CardTitle className="text-2xl">Isabella Herrera</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
-                <Mail className="h-5 w-5" />
-                <span className="text-base">lvychie14@gmail.com</span>
-              </div>
               <div className="text-sm text-muted-foreground">
-                <p>Lillie Pham oversees all social media platforms, creating engaging posts that highlight student success and community impact. With strong communication and design skills, she brings creativity and organization to every project. Outside of school, Lillie enjoys volunteering, exploring digital media, and finding new ways to make learning fun and accessible for everyone.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
               </div>
               <div className="text-center mt-4">
                 <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                  Social Media Manager
+                  Co-Founder
                 </span>
               </div>
             </CardContent>
           </Card>
 
-          {/* Head of Outreach */}
+          {/* Mariana Padilla */}
           <Card>
             <CardHeader className="text-center">
               <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
-                <img 
-                  src={natalieImage} 
-                  alt="Natalie" 
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center 30%' }}
-                />
+                <User className="w-full h-full p-8 text-muted-foreground" />
               </div>
-              <CardTitle className="text-2xl">Natalie Ho</CardTitle>
+              <CardTitle className="text-2xl">Mariana Padilla</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
-                <Mail className="h-5 w-5" />
-                <span className="text-base">natalieyuelin@gmail.com</span>
-              </div>
               <div className="text-sm text-muted-foreground">
-                <p>Natalie Ho is the head of outreach for HorizonsForHope and co-founder for CurioKits, organizations dedicated to expanding access to education through free tutoring and no-cost STEM kits, respectively. She has hands-on experience in teaching kids, from helping her own brother with fractions to teaching English to kids in Taiwan. Natalie is also the team lead of her school's robotics team, has earned multiple awards in journalism up to the state level, and is an avid runner!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
               </div>
               <div className="text-center mt-4">
                 <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                  Head of Outreach
+                  Co-Founder
                 </span>
               </div>
             </CardContent>
           </Card>
 
-          {/* Adelynn Rubio */}
+          {/* Lila Mathuria */}
           <Card>
             <CardHeader className="text-center">
               <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
-                <img 
-                  src={adelynnImage} 
-                  alt="Adelynn Rubio" 
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center top', transform: 'translateY(0%)' }}
-                />
+                <User className="w-full h-full p-8 text-muted-foreground" />
               </div>
-              <CardTitle className="text-2xl">Adelynn Rubio</CardTitle>
+              <CardTitle className="text-2xl">Lila Mathuria</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
-                <Mail className="h-5 w-5" />
-                <span className="text-base">dlynnadelynn@gmail.com</span>
-              </div>
               <div className="text-sm text-muted-foreground">
-                <p>Adelynn is the Networking Manager, where she coordinates meetings, builds partnerships, and helps shape tutoring agendas with expanding schools. She works with clubs and honor societies to ensure every student has access to volunteering opportunities and academic support. Passionate about teaching and helping students build confidence, she also draws on her love for engineering and physics to keep growing HorizonsForHope’s impact.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
               </div>
               <div className="text-center mt-4">
                 <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                  Networking Manager
+                  Volunteer
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Vyshnavi Kadiyala */}
+          <Card>
+            <CardHeader className="text-center">
+              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
+                <User className="w-full h-full p-8 text-muted-foreground" />
+              </div>
+              <CardTitle className="text-2xl">Vyshnavi Kadiyala</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="text-sm text-muted-foreground">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              </div>
+              <div className="text-center mt-4">
+                <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                  Volunteer
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Rhea Morani */}
+          <Card>
+            <CardHeader className="text-center">
+              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
+                <User className="w-full h-full p-8 text-muted-foreground" />
+              </div>
+              <CardTitle className="text-2xl">Rhea Morani</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="text-sm text-muted-foreground">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              </div>
+              <div className="text-center mt-4">
+                <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                  Volunteer
+                </span>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Lillian Ho */}
+          <Card>
+            <CardHeader className="text-center">
+              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
+                <User className="w-full h-full p-8 text-muted-foreground" />
+              </div>
+              <CardTitle className="text-2xl">Lillian Ho</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="text-sm text-muted-foreground">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+              </div>
+              <div className="text-center mt-4">
+                <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+                  Volunteer
                 </span>
               </div>
             </CardContent>
