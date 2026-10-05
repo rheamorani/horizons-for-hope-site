@@ -3,7 +3,7 @@ import { ExternalLink, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const THRogersEnrollment = () => {
-  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfSMNNFYR-sOCJCJ-NoxbRi_5GuDTdOOPtgf2Uxad1mnpAo0w/viewform?usp=sf_link";
+  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfWOZlnkUwRGUh2X6Fk_k0SQAnWuZStRFrzcAeOUu6CzC2KGA/viewform?usp=header";
 
   return (
     <div className="min-h-screen pt-24 pb-12">

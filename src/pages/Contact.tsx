@@ -285,7 +285,7 @@ const Contact = () => {
             <CardContent className="text-center">
               <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
                 <Mail className="h-5 w-5" />
-                <span className="text-base">rhea@gmail.com</span>
+                <span className="text-base">rheamorani25@gmail.com</span>
               </div>
               <div className="text-sm text-muted-foreground">
                 <p>Rhea helps strengthen our community and keeps students connected to resources, support, and opportunity.</p>
@@ -314,7 +314,7 @@ const Contact = () => {
             <CardContent className="text-center">
               <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
                 <Mail className="h-5 w-5" />
-                <span className="text-base">lillian@gmail.com</span>
+                <span className="text-base">lillian13577@gmail.com</span>
               </div>
               <div className="text-sm text-muted-foreground">
                 <p>Lillian supports outreach and connection-building, helping students and families feel welcomed and informed.</p>
